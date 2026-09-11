@@ -56,8 +56,8 @@ function Index() {
           <button className="menu-close" onClick={() => setMenuOpen(false)} aria-label="Close menu"><X /></button>
           <Brand />
           <nav aria-label="Mobile navigation">
-            {["About", "Projects", "Our legacy", "Contact"].map((label) => (
-              <a key={label} href={`#${label.toLowerCase().replace(" ", "-")}`} onClick={() => setMenuOpen(false)}>{label}<ArrowRight /></a>
+            {[{ label: "About", href: "#about" }, { label: "Projects", href: "#projects" }, { label: "Our legacy", href: "#legacy" }, { label: "Contact", href: "#contact" }].map((item) => (
+              <a key={item.label} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}<ArrowRight /></a>
             ))}
           </nav>
           <p>Dhaka, Bangladesh</p>
