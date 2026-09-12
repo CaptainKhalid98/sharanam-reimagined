@@ -243,3 +243,5 @@ footer { display: block; padding: 0; text-transform: none; letter-spacing: 0; fo
   .footer-top { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px 45px; }
   .footer-bottom { padding: 22px 24px; flex-direction: column; align-items: flex-start; }
 }
+
+footer .brand img, .menu-overlay .brand img { filter: brightness(0) invert(1); height: 52px; }
