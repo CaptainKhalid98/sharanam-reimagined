@@ -94,7 +94,7 @@ function Index() {
       {menuOpen && (
         <div className="menu-overlay">
           <button className="menu-close" onClick={() => setMenuOpen(false)} aria-label="Close menu"><X /></button>
-          <Brand />
+          <Brand invert />
           <nav aria-label="Mobile navigation">
             {[{ label: "About", href: "#about" }, { label: "Projects", href: "#projects" }, { label: "Approach", href: "#approach" }, { label: "Our legacy", href: "#legacy" }, { label: "Contact", href: "#contact" }].map((item) => (
               <a key={item.label} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}<ArrowRight /></a>
