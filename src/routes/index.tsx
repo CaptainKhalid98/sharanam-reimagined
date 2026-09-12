@@ -262,9 +262,39 @@ function Index() {
       </section>
 
       <footer>
-        <Brand />
-        <p>Dhaka, Bangladesh</p>
-        <p>© 2026 Sharanam Real Infra Ltd.</p>
+        <div className="footer-top">
+          <div className="footer-brand">
+            <Brand invert />
+            <p>Distinctive residences and enduring landmarks, built in Dhaka since 1991. Designed around daylight, space and the way families actually live.</p>
+            <div className="footer-social">
+              <a href="https://facebook.com" aria-label="Facebook"><Facebook size={16} /></a>
+              <a href="https://instagram.com" aria-label="Instagram"><Instagram size={16} /></a>
+              <a href="https://linkedin.com" aria-label="LinkedIn"><Linkedin size={16} /></a>
+            </div>
+          </div>
+          <div className="footer-col">
+            <h4>Explore</h4>
+            <a href="#about">About us</a><a href="#approach">Our approach</a><a href="#projects">Projects</a><a href="#legacy">Our legacy</a><a href="#contact">Contact</a>
+          </div>
+          <div className="footer-col">
+            <h4>Projects</h4>
+            {projects.map((p) => <a href="#projects" key={p.name}>{p.name}</a>)}
+            <a href="#contact">Upcoming launches</a>
+          </div>
+          <div className="footer-col">
+            <h4>Get in touch</h4>
+            <a href="tel:+8801404065831">01404-065831</a>
+            <a href="mailto:info@sharanam.com.bd">info@sharanam.com.bd</a>
+            <span>Sector 16, Jolshiri Abason<br />Dhaka, Bangladesh</span>
+            <span>Sat – Thu, 9:00 – 18:00</span>
+            <a className="footer-cta" href="#contact">Book a site visit <ArrowUpRight size={15} /></a>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <p>© 2026 Sharanam Real Infra Ltd. All rights reserved.</p>
+          <p>Dhaka, Bangladesh</p>
+          <a href="#top">Back to top <ArrowUpRight size={13} /></a>
+        </div>
       </footer>
     </main>
   );
