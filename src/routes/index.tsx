@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowDown, ArrowRight, Menu, Phone, Mail, MapPin, Minus, Plus, X } from "lucide-react";
-import { useState } from "react";
+import { ArrowDown, ArrowRight, ArrowUpRight, Facebook, Instagram, Linkedin, Menu, Phone, Mail, MapPin, Minus, Plus, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import logoAsset from "../assets/sharanam-logo.png.asset.json";
 import proshantiImage from "../assets/sharanam-proshanti.jpg";
 import sukhaloyImage from "../assets/sharanam-sukhaloy.jpg";
 import sunsetImage from "../assets/sharanam-sunset.jpg";
@@ -56,11 +57,10 @@ const faqs = [
   { q: "What happens after handover?", a: "Structural and fittings warranties apply after handover, and our service team supports facility setup and maintenance guidance." },
 ];
 
-function Brand() {
+function Brand({ invert = false }: { invert?: boolean }) {
   return (
-    <a href="#top" className="brand" aria-label="Sharanam home">
-      <span className="brand-mark" aria-hidden="true"><i /><i /><i /></span>
-      <span><strong>SHARANAM</strong><small>REAL INFRA</small></span>
+    <a href="#top" className={`brand${invert ? " invert" : ""}`} aria-label="Sharanam Real Infra home">
+      <img src={logoAsset.url} alt="Sharanam Real Infra" />
     </a>
   );
 }
@@ -68,12 +68,20 @@ function Brand() {
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [scrolled, setScrolled] = useState(false);
   useReveal();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 80);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <main id="top">
-      <header className="site-header">
-        <Brand />
+      <header className={`site-header${scrolled ? " scrolled" : ""}`}>
+        <Brand invert={!scrolled} />
         <nav className="desktop-nav" aria-label="Main navigation">
           <a href="#about">About</a><a href="#projects">Projects</a><a href="#approach">Approach</a><a href="#legacy">Our legacy</a><a href="#contact">Contact</a>
         </nav>
@@ -86,7 +94,7 @@ function Index() {
       {menuOpen && (
         <div className="menu-overlay">
           <button className="menu-close" onClick={() => setMenuOpen(false)} aria-label="Close menu"><X /></button>
-          <Brand />
+          <Brand invert />
           <nav aria-label="Mobile navigation">
             {[{ label: "About", href: "#about" }, { label: "Projects", href: "#projects" }, { label: "Approach", href: "#approach" }, { label: "Our legacy", href: "#legacy" }, { label: "Contact", href: "#contact" }].map((item) => (
               <a key={item.label} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}<ArrowRight /></a>
@@ -254,9 +262,39 @@ function Index() {
       </section>
 
       <footer>
-        <Brand />
-        <p>Dhaka, Bangladesh</p>
-        <p>© 2026 Sharanam Real Infra Ltd.</p>
+        <div className="footer-top">
+          <div className="footer-brand">
+            <Brand invert />
+            <p>Distinctive residences and enduring landmarks, built in Dhaka since 1991. Designed around daylight, space and the way families actually live.</p>
+            <div className="footer-social">
+              <a href="https://facebook.com" aria-label="Facebook"><Facebook size={16} /></a>
+              <a href="https://instagram.com" aria-label="Instagram"><Instagram size={16} /></a>
+              <a href="https://linkedin.com" aria-label="LinkedIn"><Linkedin size={16} /></a>
+            </div>
+          </div>
+          <div className="footer-col">
+            <h4>Explore</h4>
+            <a href="#about">About us</a><a href="#approach">Our approach</a><a href="#projects">Projects</a><a href="#legacy">Our legacy</a><a href="#contact">Contact</a>
+          </div>
+          <div className="footer-col">
+            <h4>Projects</h4>
+            {projects.map((p) => <a href="#projects" key={p.name}>{p.name}</a>)}
+            <a href="#contact">Upcoming launches</a>
+          </div>
+          <div className="footer-col">
+            <h4>Get in touch</h4>
+            <a href="tel:+8801404065831">01404-065831</a>
+            <a href="mailto:info@sharanam.com.bd">info@sharanam.com.bd</a>
+            <span>Sector 16, Jolshiri Abason<br />Dhaka, Bangladesh</span>
+            <span>Sat – Thu, 9:00 – 18:00</span>
+            <a className="footer-cta" href="#contact">Book a site visit <ArrowUpRight size={15} /></a>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <p>© 2026 Sharanam Real Infra Ltd. All rights reserved.</p>
+          <p>Dhaka, Bangladesh</p>
+          <a href="#top">Back to top <ArrowUpRight size={13} /></a>
+        </div>
       </footer>
     </main>
   );
