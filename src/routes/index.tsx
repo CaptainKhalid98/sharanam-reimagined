@@ -57,11 +57,10 @@ const faqs = [
   { q: "What happens after handover?", a: "Structural and fittings warranties apply after handover, and our service team supports facility setup and maintenance guidance." },
 ];
 
-function Brand() {
+function Brand({ invert = false }: { invert?: boolean }) {
   return (
-    <a href="#top" className="brand" aria-label="Sharanam home">
-      <span className="brand-mark" aria-hidden="true"><i /><i /><i /></span>
-      <span><strong>SHARANAM</strong><small>REAL INFRA</small></span>
+    <a href="#top" className={`brand${invert ? " invert" : ""}`} aria-label="Sharanam Real Infra home">
+      <img src={logoAsset.url} alt="Sharanam Real Infra" />
     </a>
   );
 }
@@ -69,12 +68,20 @@ function Brand() {
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [scrolled, setScrolled] = useState(false);
   useReveal();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 80);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <main id="top">
-      <header className="site-header">
-        <Brand />
+      <header className={`site-header${scrolled ? " scrolled" : ""}`}>
+        <Brand invert={!scrolled} />
         <nav className="desktop-nav" aria-label="Main navigation">
           <a href="#about">About</a><a href="#projects">Projects</a><a href="#approach">Approach</a><a href="#legacy">Our legacy</a><a href="#contact">Contact</a>
         </nav>
