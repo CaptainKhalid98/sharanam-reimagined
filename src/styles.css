@@ -245,3 +245,5 @@ footer { display: block; padding: 0; text-transform: none; letter-spacing: 0; fo
 }
 
 footer .brand img, .menu-overlay .brand img { filter: brightness(0) invert(1); height: 52px; }
+
+footer .brand.invert, .menu-overlay .brand.invert { filter: none; }
