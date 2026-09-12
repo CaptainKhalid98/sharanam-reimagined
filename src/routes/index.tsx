@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowDown, ArrowRight, Menu, Phone, Mail, MapPin, Minus, Plus, X } from "lucide-react";
-import { useState } from "react";
+import { ArrowDown, ArrowRight, ArrowUpRight, Facebook, Instagram, Linkedin, Menu, Phone, Mail, MapPin, Minus, Plus, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import logoAsset from "../assets/sharanam-logo.png.asset.json";
 import proshantiImage from "../assets/sharanam-proshanti.jpg";
 import sukhaloyImage from "../assets/sharanam-sukhaloy.jpg";
 import sunsetImage from "../assets/sharanam-sunset.jpg";
